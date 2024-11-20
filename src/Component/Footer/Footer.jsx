@@ -36,6 +36,7 @@ const Footer=()=>{
                 <a href="/about" class="text-xl font-medium text-white"><i class="fa-solid fa-chevron-right"></i> About</a> <br />
                 <a href="/services" class="text-xl font-medium text-white"><i class="fa-solid fa-chevron-right"></i> Service</a> <br />
                 <a href="/doctor" class="text-xl font-medium text-white"><i class="fa-solid fa-chevron-right"></i> Doctors</a> <br />
+                <a href="/cavin" class="text-xl font-medium text-white"><i class="fa-solid fa-chevron-right"></i> Cavin</a> <br />
                 
             </div>
 

@@ -10,6 +10,8 @@ import DoctorApoint from './Component/DoctorApoint/DoctorApoint';
 import ServiceDetailsCard from './Component/ServiceDetailsCard/ServiceDetailsCard';
 import ServiceForm from './Component/ServiceForm/ServiceForm';
 import Footer from './Component/Footer/Footer';
+import Cavin from './Component/Cavin/Cavin';
+import CavinForm from './Component/CavinForm/CavinForm';
 
 
 
@@ -33,6 +35,8 @@ const App=()=>{
       <Route path='/doctorApoint/:doctorId' element={<DoctorApoint></DoctorApoint>}></Route>
       <Route path='/doctorDetails/:doctorId' element={<DoctorDetails></DoctorDetails>}></Route>
       <Route path='/' element={<Home></Home>}></Route>
+      <Route path='/Cavin' element={<Cavin></Cavin>}></Route>
+      <Route path='/cavinForm/:cavinId' element={<CavinForm></CavinForm>}></Route>
         
       </Routes>
        

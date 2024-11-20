@@ -5,7 +5,7 @@ const Doctor=()=>{
     const [Data,setData]=useState([])
 
     useEffect(()=>{
-        fetch('https://my-json-server.typicode.com/nazim725/Doctors/posts')
+        fetch('https://my-json-server.typicode.com/Newaz-Sourav/DoctorApi/post')
         .then(res=>res.json())
         .then(data=>setData(data))
 

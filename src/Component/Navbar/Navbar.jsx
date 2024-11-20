@@ -85,6 +85,16 @@ const Navbar = () => {
                   >
                     Doctor
                   </a>
+
+                  <a
+                    href="/cavin"
+                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  >
+                    Cavin
+                  </a>
+
+
+
                   <a
                     href="/about"
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
@@ -124,6 +134,16 @@ const Navbar = () => {
             >
               Doctor
             </a>
+
+            <a
+              href="/cavin"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+             Cavin
+            </a>
+
+
+
             <a
               href="/about"
               className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"

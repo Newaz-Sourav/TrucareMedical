@@ -7,7 +7,7 @@ const ServiceDetailsCard=()=>{
 
     const [serviceSet,setserviceSet]=useState({})
 
-    const url=`https://my-json-server.typicode.com/nazim725/Services/posts/${serviceId}`
+    const url=`https://my-json-server.typicode.com/newaz-sourav/ServicesApi/posts/${serviceId}`
 
     useEffect(()=>{
         fetch(url)
