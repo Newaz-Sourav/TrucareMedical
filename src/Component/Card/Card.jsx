@@ -1,5 +1,4 @@
 import React from "react";
-import { Fade } from "react-reveal";
 import { Link } from "react-router-dom";
 
 const Card=(props)=>{
@@ -10,7 +9,7 @@ const Card=(props)=>{
 
         <div>
 
-            <Fade bottom>
+            
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
     <div>
         <img class="rounded-t-lg w-full h-80" src={img} alt="Image" />
@@ -37,7 +36,7 @@ const Card=(props)=>{
     </div>
 </div>
 
-            </Fade>
+          
         </div>
            
 

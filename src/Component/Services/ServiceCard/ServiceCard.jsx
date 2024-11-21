@@ -1,5 +1,4 @@
 import React from "react";
-import { Fade } from "react-reveal";
 import { Link } from 'react-router-dom';
 
 const ServiceCard=(props)=>{
@@ -9,7 +8,7 @@ const ServiceCard=(props)=>{
         
         <div>
 
-            <Fade bottom>
+          
             <div>
 
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -34,7 +33,7 @@ const ServiceCard=(props)=>{
     </div>
 </div>
         </div>
-            </Fade>
+          
         </div>
         
     )
