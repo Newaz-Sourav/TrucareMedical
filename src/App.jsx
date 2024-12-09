@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './Component/Navbar/Navbar';
 import { Route, Router, Routes } from 'react-router-dom';
 import Services from './Component/Services/Services';
-import Footer from './Component/footer/footer';
+import Footer from './Component/Footer/Footer';
 import Home from './Component/Home/Home';
 import About from './Component/About/About';
 import Doctor from './Component/Doctor/Doctor';
@@ -39,7 +39,6 @@ const App=()=>{
       <Route path='/doctorApoint/:doctorId' element={<DoctorApoint></DoctorApoint>}></Route>
       <Route path='/doctorDetails/:doctorId' element={<DoctorDetails></DoctorDetails>}></Route>
       <Route path='/cavinForm/:cavinId' element={<CavinForm></CavinForm>}></Route>
-      
       <Route path='/' element={<Home></Home>}></Route>
         
       </Routes>
