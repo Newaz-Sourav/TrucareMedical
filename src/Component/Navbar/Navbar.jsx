@@ -1,7 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { auth } from "../../config/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("User logged out");
+        setUser(null);
+      })
+      .catch((error) => console.error("Error logging out:", error));
+  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prevState) => !prevState);
@@ -12,7 +31,7 @@ const Navbar = () => {
       <nav className="bg-gray-800">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
-            {/* Mobile menu button without hover effect */}
+            {/* Mobile menu button */}
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               <button
                 type="button"
@@ -22,7 +41,6 @@ const Navbar = () => {
                 onClick={toggleMobileMenu}
               >
                 <span className="sr-only">Open main menu</span>
-                {/* Hamburger icon */}
                 {isMobileMenuOpen ? (
                   <svg
                     className="h-6 w-6"
@@ -64,53 +82,67 @@ const Navbar = () => {
                   <i className="fa-regular fa-hospital"></i> TruCare Medical
                 </p>
               </a>
-              <div className="hidden sm:ml-6 sm:block">
-                <div className="flex space-x-4">
+              <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-4">
+                <a
+                  href="/"
+                  className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                  aria-current="page"
+                >
+                  Home
+                </a>
+                <a
+                  href="/services"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >
+                  Services
+                </a>
+                <a
+                  href="/doctor"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >
+                  Doctor
+                </a>
+                <a
+                  href="/cavin"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >
+                  Cavin
+                </a>
+                <a
+                  href="/about"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >
+                  About
+                </a>
+                {user ? (
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={handleLogout}
+                      className="px-3 py-2 text-lg text-red-500 hover:text-red-700 font-bold"
+                    >
+                      Logout
+                    </button>
+                    <span className="text-gray-300 text-sm">
+                      {user.email.split("@")[0]}
+                    </span>
+                  </div>
+                ) : (
                   <a
-                    href="/"
-                    className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-                    aria-current="page"
-                  >
-                    Home
-                  </a>
-                  <a
-                    href="/services"
+                    href="/login"
                     className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                   >
-                    Services
+                    Login
                   </a>
-                  <a
-                    href="/doctor"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    Doctor
-                  </a>
-
-                  <a
-                    href="/cavin"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    Cavin
-                  </a>
-
-
-
-                  <a
-                    href="/about"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    About
-                  </a>
-                </div>
+                )}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Mobile navigation without hover effect on the menu button */}
+        {/* Mobile navigation */}
         <div
-          className={`overflow-hidden transition-all duration-300 ${
-            isMobileMenuOpen ? "max-h-60" : "max-h-0"
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            isMobileMenuOpen ? "max-h-screen" : "max-h-0"
           } sm:hidden`}
           id="mobile-menu"
         >
@@ -134,24 +166,38 @@ const Navbar = () => {
             >
               Doctor
             </a>
-
             <a
               href="/cavin"
               className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >
-             Cavin
+              Cavin
             </a>
-
-
-
             <a
               href="/about"
               className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >
               About
             </a>
-
-            
+            {user ? (
+              <div className="flex flex-col items-start space-y-2">
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-3 py-2 text-base font-medium text-red-500 hover:text-red-700"
+                >
+                  Logout
+                </button>
+                <span className="text-gray-300 text-sm">
+                  {user.email.split("@")[0]}
+                </span>
+              </div>
+            ) : (
+              <a
+                href="/login"
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              >
+                Login
+              </a>
+            )}
           </div>
         </div>
       </nav>
