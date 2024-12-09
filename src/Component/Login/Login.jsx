@@ -76,7 +76,7 @@ const Login = () => {
         <div className="mt-6 flex justify-center">
           <button
             onClick={handleGoogleSignIn}
-            className="flex items-center bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+            className="flex items-center bg-cyan-200 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
           >
             <img
               src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
