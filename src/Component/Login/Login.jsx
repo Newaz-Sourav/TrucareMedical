@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // React Router থেকে useNavigate ইম্পোর্ট করুন
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../config/firebase";
 
 const Login = () => {
@@ -7,6 +8,19 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const provider = new GoogleAuthProvider();
+  const navigate = useNavigate(); // useNavigate হুক ব্যবহার করুন
+
+  // ইউজারের লগইন স্টেট চেক করা
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User is logged in");
+        navigate("/"); // লগইন করা থাকলে হোম পেজে রিডিরেক্ট
+      }
+    });
+
+    return () => unsubscribe(); // ক্লিনআপ
+  }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -15,6 +29,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("Login successful");
+      navigate("/"); // সফল লগইন হলে হোম পেজে রিডিরেক্ট
     } catch (err) {
       const errorCode = err.code.split("/")[1];
       setError(errorCode);
@@ -27,6 +42,7 @@ const Login = () => {
     try {
       await signInWithPopup(auth, provider);
       console.log("Google Sign-In successful");
+      navigate("/"); // Google লগইন সফল হলে হোম পেজে রিডিরেক্ট
     } catch (err) {
       const errorCode = err.code.split("/")[1];
       setError(errorCode);
