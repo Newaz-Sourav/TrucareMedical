@@ -21,7 +21,7 @@ const ImgSlide = () => {
   };
 
   return (
-    <div className="carousel relative overflow-hidden w-full h-56 sm:h-64 md:h-64 lg:h-80 xl:h-96 2xl:h-screen">
+    <div className="carousel relative overflow-hidden w-full h-56 sm:h-64 md:h-64 lg:h-80 xl:h-96 2xl:h-98">
       <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${(currentSlide - 1) * 100}%)` }}>
         <div className="carousel-item w-full flex-shrink-0">
           <img
