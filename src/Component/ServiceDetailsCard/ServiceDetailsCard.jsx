@@ -27,7 +27,7 @@ const ServiceDetailsCard=()=>{
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{serviceSet.name}</h5>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{serviceSet.subtitle}</p>
-        <p>BDT: {serviceSet.price}</p>
+        <p>USD: {serviceSet.price}</p>
         <br />
         <p>{serviceSet.description}</p>
 
